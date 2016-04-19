@@ -102,7 +102,7 @@ def xml_generate(num_seq, max_nest=4, max_iter=50,
     return tags, tags_encoding, tags_mask
 
 class XML(Dataset):
-    provides_sources = ('features', 'labels')
+    provides_sources = ('features', 'masks')
     example_iteration_scheme = None
 
     def __init__(self, num_seq, max_nest=4, max_iter=50,
@@ -116,8 +116,8 @@ class XML(Dataset):
 
     def get_data(self, state=None, request=None):
         tags, data, masks = xml_generate(self.num_seq, self.max_nest,
-                                      self.max_iter, self.min_char,
-                                      self.max_char)
+                                         self.max_iter, self.min_char,
+                                         self.max_char)
         return (data, masks)
 
 if __name__ == "__main__":
